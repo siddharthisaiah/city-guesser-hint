@@ -1,0 +1,7 @@
+
+Chrome Extenson Development
+https://developer.chrome.com/docs/extensions/mv3/getstarted/
+
+
+Stack overflow inject
+https://stackoverflow.com/questions/9515704/access-variables-and-functions-defined-in-page-context-using-a-content-script
