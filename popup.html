@@ -1,36 +1,79 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <title>Document</title>
-    </head>
-    <body>
-	<!-- <button id="btn-lat-lon">Get lat-long</button> -->
+<head>
+<meta charset="UTF-8"/>
+<title>City Guesser Hint</title>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: .2em .15em;
+    }
+    body {
+        border-radius: 16px;
+        width: 14.15em;
+        height: 10.7em;
+        font-family: -apple-system, BlinkMacSystemFont,
+            Cantarell, Ubuntu, arial, sans-serif;
+        background-color: aliceblue;
+    }
+    .hint div {
+        padding: .5em .5em;
+        width: 13.2em;
+        border: 1px solid black;
+        text-align: center;
+    }
+    .hint .button {
+        cursor: pointer;
+        border: 1px solid blue;
+        background-color: blue;
+        color: white;
+        font-weight: bold;
+    }
+    .hint .button:hover {
+        background-color: darkblue;
+        border-color: darkblue;
+    }
+    #hint-continent:before {
+        font-weight: bold;
+        content: "Continent: ";
+    }
+    #hint-country:before {
+        font-weight: bold;
+        content: "Country: ";
+    }
+    #hint-city:before {
+        font-weight: bold;
+        content: "City: ";
+    }
+    .hint > * {
+        position: absolute;
+        margin-top: .5em;
+    }
+    .hint {
+        height: 3.15em;
+    }
+</style>
+</head>
+<body>
+<!-- <button id="btn-lat-lon">Get lat-long</button> -->
 
-	<div class="hints">
-	    <p>Continent:
-		<a id="show-continent">
-		    <span id="show-cont-hint-a">Show</span>
-		    <span id="hint-continent" style="visibility:hidden">unavailable</span>
-		</a>
-	    </p>
-	    
-	    <p>Country:
-		<a id="show-country">
-		    <span id="show-country-hint-a">Show</span>
-		    <span id="hint-country" style="visibility:hidden">unavailable</span>
-		</a>
-	    </p>
+<div class="hints">
+    <div class="hint">
+        <div class="button" id="show-cont-hint-a">Show Continent</div>
+        <div id="hint-continent" style="visibility:hidden">unavailable</div>
+    </div>
 
+    <div class="hint">
+        <div class="button" id="show-country-hint-a">Show Country</div>
+        <div id="hint-country" style="visibility:hidden">unavailable</div>
+    </div>
 
-	    <p>City:
-		<a id="show-city">
-		    <span id="show-city-hint-a">Show</span>
-		    <span id="hint-city" style="visibility:hidden">unavailable</span>
-		</a>
-	    </p>
+    <div class="hint">
+        <div class="button" id="show-city-hint-a">Show City</div>
+        <div id="hint-city" style="visibility:hidden">unavailable</div>
+    </div>
+</div>
 
-	</div>
-	<script src="scripts/popup.js"></script>
-    </body>
+<script src="scripts/popup.js"></script>
+</body>
 </html>
