@@ -13,23 +13,19 @@
 
     window.addEventListener("message", function (event) {
 	if (event.data.type
-	    && (event.data.type == 'FROM_PAGE')) {
+	    && (event.data.type == 'FROM_PAGE')
+	    && (event.data.essential.lat_lon !== null)) {
 
 
 	    coords['latitude'] = event.data.essential.lat_lon[0];
 	    coords['longitude'] = event.data.essential.lat_lon[1];
 
-	    console.log("content script");
-	    console.log(coords);
 	    try {
 		chrome.runtime.sendMessage({type: 'COORDINATES', data: coords});
 	    } catch(exception) {
 		console.log("cannot send runtime message to popup.js due to:");
 		console.log(exception);
 	    }
-	    console.log("ending");
-	} else {
-	    console.log("wrong event type");
 	}
 	    
     }, false);

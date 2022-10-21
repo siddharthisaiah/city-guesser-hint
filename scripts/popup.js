@@ -1,11 +1,3 @@
-// document.getElementById('btn-lat-lon').addEventListener('click', function () {
-//     console.log("Get the lat lon NOW!!!");
-//     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-// 	chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
-// 	    console.log(response);
-// 	});
-//     });
-// });
 let hints = {
     "40.758~~~-73.9855": {
 	"city": "Manhattan",
@@ -4220,44 +4212,35 @@ let hintKey = null;
 let hint = null;
 // let hints = {};
 
+
+// hide the hints
+document.getElementById('show-cont-hint-a').style.visibility = 'visible';
+document.getElementById('hint-continent').style.visibility = 'hidden';
+
+document.getElementById('show-country-hint-a').style.visibility = 'visible';
+document.getElementById('hint-country').style.visibility = 'hidden';
+
+document.getElementById('show-city-hint-a').style.visibility = 'visible';
+document.getElementById('hint-city').style.visibility = 'hidden';
+
+
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     if(message.type == "COORDINATES") {
 	let coords = message.data;
-	console.log("yello!");
-	console.log(coords);
 
 	hintKey = coords.latitude.toString() + '~~~' + coords.longitude.toString();
 	hint = hints[hintKey];
 
-
-	console.log("hint:");
-	console.log(hint);
-	
 	if(hintKey !== undefined && hint !== undefined) {
 	    hintContinent = hint['continent'];
 	    hintCountry = hint['country'];
 	    hintCity = hint['city'];
 
-	    // hide the hints
-	    document.getElementById('show-cont-hint-a').style.visibility = 'visible';
-	    document.getElementById('hint-continent').style.visibility = 'hidden';
-
-	    document.getElementById('show-country-hint-a').style.visibility = 'visible';
-	    document.getElementById('hint-country').style.visibility = 'hidden';
-
-	    document.getElementById('show-city-hint-a').style.visibility = 'visible';
-	    document.getElementById('hint-city').style.visibility = 'hidden';
-
-	    
 	    // assign hints
 	    document.getElementById('hint-continent').innerHTML = hintContinent;
 	    document.getElementById('hint-country').innerHTML = hintCountry;
 	    document.getElementById('hint-city').innerHTML = hintCity;
-	} else {
-	    console.log("Count not get hint for key " + hintKey);
 	}
-    } else {
-	console.log("message is not for coordinates");
     }
 });
 

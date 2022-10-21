@@ -34,9 +34,5 @@ function setGlobalMarkerCoords(lat, lon) {
 
 setInterval(() => {
     essential = passEssentials();
-    if (isNewCoordinates(essential.lat_lon)) {
-	console.log("injected script");
-	console.log(essential);
-	window.postMessage({'type': 'FROM_PAGE', essential});
-    }
-}, 5000);
+    window.postMessage({'type': 'FROM_PAGE', essential});
+}, 1000);
