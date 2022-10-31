@@ -4224,6 +4224,35 @@ document.getElementById('show-city-hint-a').style.visibility = 'visible';
 document.getElementById('hint-city').style.visibility = 'hidden';
 
 
+function randomInt(len) {
+    return Math.floor(Math.random() * len);
+}
+
+function replaceAt(str, idx, ch) {
+    return str.substring(0, idx) + ch + str.substring(idx + ch.length);
+}
+
+function hideLetters(hint) {
+    const toReplace = Math.floor(hint.length / 2);
+
+    let result = hint;
+
+    for (i = 0; i < toReplace;) {
+          const randIdx = randomInt(hint.length);
+
+              if (!(result[randIdx] == "-")) {
+                      result = replaceAt(result, randIdx, "-");
+                            i++;
+              }
+    }
+
+    return result;
+}
+
+let hintContinent = "";
+let hintCountry = "";
+let hintCity = "";
+
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     if(message.type == "COORDINATES") {
 	let coords = message.data;
@@ -4232,9 +4261,9 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 	hint = hints[hintKey];
 
 	if(hintKey !== undefined && hint !== undefined) {
-	    hintContinent = hint['continent'];
-	    hintCountry = hint['country'];
-	    hintCity = hint['city'];
+	    hintContinent = hintContinent ? hintContinent : hideLetters(hint['continent']);
+	    hintCountry = hintCountry ? hintCountry : hideLetters(hint['country']);
+	    hintCity = hintCity ? hintCity : hideLetters(hint['city']);
 
 	    // assign hints
 	    document.getElementById('hint-continent').innerHTML = hintContinent;
